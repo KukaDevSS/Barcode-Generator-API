@@ -13,12 +13,12 @@
       <thead>
         <tr class="text-center">
           <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">id</th>
-          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">laoname</th>
+          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">Product name</th>
           <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">itemnumber</th>
           <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">costprice</th>
           <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">unitprice</th>
-          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">print QR</th>
-          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">ພິມລາຄາ</th>
+          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">print name</th>
+          <th class="border border-black px-2 py-2 bg-green-500 text-sm text-white uppercase">print price</th>
         </tr>
       </thead>
       <tbody class="body">
