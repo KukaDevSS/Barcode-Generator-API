@@ -55,6 +55,7 @@
               <head>
                 <title>Generated Barcodes</title>
                 <style>
+                  @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&family=Noto+Sans+Lao&family=Noto+Serif+Lao:wght@900&family=Oswald:wght@700&family=Tapestry&display=swap');
                   @page {
                     size: 3.2cm 2cm; /* Set the size of the printed page */
                     margin: 0;
@@ -71,7 +72,7 @@
                     height: 1.6cm;
                     width: 3.4cm;
                     font-size: 12px;
-                    margin-top: 1px;
+                    margin-top: -2px;
                   }
                   .barcode-text {
                     font-size: 30px; /* Adjust the font size as needed */
@@ -91,6 +92,7 @@
                     font-size: 8px;
                     text-align: center;
                     margin-top: -10px;
+                    font-family: 'Noto Sans Lao', sans-serif;
                 }
                 .barcode-row {
                   display: flex;
@@ -123,6 +125,7 @@
           printWindow.close();
           // Navigate to the home page
           window.location.href = '/product'; 
+          // this.$router.push({ name: 'product' });
         });
       },
        // Truncate a string and add an ellipsis
@@ -138,7 +141,7 @@
 
       // Modify this section to include your header text
         const headerText = this.headerText;
-        const truncatedHeaderText = this.truncateText(headerText, 25); // Truncate to 20 characters // Set your desired header text
+        const truncatedHeaderText = this.truncateText(headerText, 30); // Truncate to 20 characters // Set your desired header text
         return `
           <div class="barcode-container">
             <div>

@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'ItemNumber',
       component: () => import('../views/BarcodeGen.vue')
     },
+    {
+      path: '/product/:itemnumber/:unitprice',
+      name: 'codePrice',
+      component: () => import('../views/BarcodePrice.vue')
+    },
   ]
 })
 

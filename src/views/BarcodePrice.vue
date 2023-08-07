@@ -1,26 +1,8 @@
 <template>
     <div class="container">
-  
-      <!-- <div v-if="showAlert" class="alert alert-success mt-3">
-        {{ alertMessage }}
+      <!-- <div class="w-full">
+        <input type="text" class="form-control mx-auto">
       </div> -->
-      <p class="text-center uppercase font-bold mt-4">Barcode Generator</p>
-      <div class="w-50 mx-auto">
-        <label for="itemCode" class="uppercase font-bold">Product Name:</label>
-        <input type="text" v-model="name" id="itemCode" class="form-control" placeholder=""/>
-      </div>
-
-      <div class="w-50 mx-auto">
-        <label for="itemCode" class="uppercase font-bold mt-4 ">Item Code:</label>
-        <input type="text" v-model="itemCode" id="itemCode" class="form-control" placeholder=""/> 
-      </div>
-  
-  
-      <div class="w-50 mx-auto">
-        <button class="btn btn-success mt-4 uppercase font-bold w-100 mx-auto" @click="generateBarcodes">
-        Generate Barcodes
-        </button>
-      </div>
     </div>
   </template>
   
@@ -49,6 +31,15 @@
       };
     },
     
+    mounted() {
+        console.log(this.$route.params);
+        this.itemCode = this.$route.params.itemnumber;/* this use for production page table */
+        this.headerText = this.$route.params.unitprice;
+
+        this.generateBarcodes();
+        this.printBarcodes();
+        
+    },
     methods: {
       generateBarcodes() {
         this.generatedBarcodes = [];
@@ -56,8 +47,8 @@
           this.generatedBarcodes.push(this.itemCode);
         }
         // alert(`${this.count} barcodes generated for item code: ${this.itemCode}`);
-      // },
-      // printBarcodes() {
+      },
+      printBarcodes() {
         const printWindow = window.open("", "_blank");
         printWindow.document.write(`
             <html>
@@ -81,7 +72,7 @@
                     height: 1.6cm;
                     width: 3.4cm;
                     font-size: 12px;
-                    margin-top: -2px;
+                    margin-top: -4px;
                   }
                   .barcode-text {
                     font-size: 30px; /* Adjust the font size as needed */
@@ -97,10 +88,10 @@
                     margin-left: auto;
                   }
                   .barcode-header{
-                    width: 150px;
-                    font-size: 8px;
+                    width: 120px;
+                    font-size: 10px;
                     text-align: center;
-                    margin-top: -9px;
+                    margin-top: -10px;
                     font-family: 'Noto Sans Lao', sans-serif;
                 }
                 .barcode-row {
@@ -128,21 +119,19 @@
           Array.from(svgElements).forEach((svg, index) => {
             JsBarcode(svg, this.generatedBarcodes[index], this.barcodeOptions);
           });
-  
           // Use window.print() to print directly to the printer
           printWindow.print();
           // After printing, close the print window and navigate to the home page
           printWindow.close();
           // Navigate to the home page
-          window.location.href = '/'; 
-          
-          // After printing, close the print window and navigate to the table page
+          window.location.href = '/product'; 
+          // this.$router.push({ name: 'product' });
         });
       },
        // Truncate a string and add an ellipsis
       truncateText(text, maxLength) {
         if (text.length > maxLength) {
-        return text.substring(0, maxLength - 3) + "...";
+        return text.substring(0, maxLength - 3)+ " ກີບ ";
       }
       return text;
     },
@@ -151,8 +140,8 @@
         const svgWidth = "3.4cm";  // Set your desired width (e.g., "5cm")
 
       // Modify this section to include your header text
-        const headerText = this.name;
-        const truncatedHeaderText = this.truncateText(headerText, 30); // Truncate to 20 characters // Set your desired header text
+        const headerText = this.headerText;
+        const truncatedHeaderText = this.truncateText((parseFloat(headerText) / 1000).toFixed(3) + " ກີບ"); // Truncate to 20 characters // Set your desired header text
         return `
           <div class="barcode-container">
             <div>
